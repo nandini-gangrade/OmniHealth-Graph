@@ -1,85 +1,99 @@
 # OmniHealth Graph
-### Intelligent Clinical Documentation & Revenue Optimization Assistant Powered by FalkorDB
+### Autonomous Clinical Documentation & Revenue Integrity Engine Powered by FalkorDB
 
-[![FalkorDB](https://img.shields.io/badge/Graph_Engine-FalkorDB-red.svg)](https://www.falkordb.com/)
-[![Track 1](https://img.shields.io/badge/Track_01-Agents_on_Connected_Data-blue.svg)](#track-01-agents-that-act-on-connected-data)
-[![Track 2](https://img.shields.io/badge/Track_02-Agent_Memory_%26_Coordination-emerald.svg)](#track-02-agent-memory--coordination)
-[![Track 3](https://img.shields.io/badge/Track_03-Company_Brain-purple.svg)](#track-03-company-brain)
+[![FalkorDB](https://img.shields.io/badge/Graph_Engine-FalkorDB-E23636.svg)](https://www.falkordb.com/)
+[![Track 1](https://img.shields.io/badge/Track_01-Agents_on_Connected_Data-3B82F6.svg)](#-track-01-agents-that-act-on-connected-data)
+[![Track 2](https://img.shields.io/badge/Track_02-Agent_Memory_%26_Coordination-10B981.svg)](#-track-02-agent-memory--coordination)
+[![Track 3](https://img.shields.io/badge/Track_03-Company_Brain-8B5CF6.svg)](#-track-03-company-brain)
+[![LangGraph](https://img.shields.io/badge/Orchestrator-LangGraph-orange.svg)](https://langchain-ai.github.io/langgraph/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/Frontend-React_18_%2B_Vite-61DAFB.svg)](https://react.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
-
-## 🎥 Working Demo Video Walkthrough
-> **Official Submission Video:** 
-> 🔗 **[Watch the 3-Minute End-to-End Walkthrough on YouTube / Loom](https://youtu.be/PLACEHOLDER)** *(Replace with your recording link)*
-> 
-> *A live, continuous demonstration of the speech-to-EHR agentic pipeline, FalkorDB Cypher provenance trails, cross-session contraindication interception, and institutional denial analytics.*
+> **Submission for Graph Hacks: Context for AI Agents Powered by FalkorDB**  
+> *Targeting all three tracks: Track 01 (Connected Data), Track 02 (Agent Memory & Coordination), and Track 03 (Company Brain).*
 
 ---
 
-## 🏆 Hackathon Tracks Entered (All 3 Tracks)
 
-OmniHealth Graph enters all three tracks of **Graph Hacks: Context for AI Agents Powered by FalkorDB** because FalkorDB is not merely a visualizer—it is the **load-bearing reasoning, memory, and governance layer** of the entire clinical pipeline:
+## 📌 Executive Summary
 
-| Track | Product Capability | FalkorDB Role |
-| :--- | :--- | :--- |
-| **Track 01: Agents That Act on Connected Data** | **Medical Necessity & Code Unbundling Proofs** | Coding & compliance agents execute multi-hop Cypher traversals (`Symptom ➔ Diagnosis ➔ Procedure`) to prove deterministic necessity for CPT reimbursement, returning literal `nodes(path)` pill trails and catching NCCI bundling violations (e.g. CPT 93000 vs 93010). |
-| **Track 02: Agent Memory & Coordination** | **Cross-Session Patient Safety & Isolated Memory** | Multi-tenant isolated subgraphs (`patient_<id>`) preserve longitudinal encounters, diagnoses, and active medications. When a new drug is ordered, the clinical agent traverses past encounters against pharmacological contraindication rules (`Nitrate ➔ PDE5 Inhibitor`), preventing fatal refractory hypotension. |
-| **Track 03: Company Brain** | **Institutional Hospital Brain & Revenue Optimization** | An enterprise `hospital_brain` graph connects clinical departments, supervising physicians, frequently billed CPT codes, and historical payer denial reasons (CARC codes CO-50, CO-97, CO-16), preempting claim denials before submission. |
+**OmniHealth Graph** is an enterprise-grade clinical documentation and revenue cycle intelligence assistant where **FalkorDB serves as the load-bearing context, reasoning, memory, and governance layer**. 
 
----
-
-## 🩺 Clinical Problem Statement: The Crisis in Clinical Documentation & Revenue Integrity
-
-Clinicians spend **over 2 hours on administrative electronic health record (EHR) data entry for every 1 hour of direct patient care**. This chronic administrative burden leads to:
-1. **Severe Clinician Burnout:** Doctors spend their evenings on "pajama time" charting notes.
-2. **Medical Necessity Denials:** Insurers deny up to **15% of hospital claims** when documentation fails to prove that a diagnosed condition justified the ordered procedure (CARC CO-50).
-3. **NCCI Bundling Clawbacks:** Billing component procedures alongside comprehensive services (e.g. billing ECG interpretation 93010 alongside full 12-lead ECG 93000) triggers automated claim rejections (CARC CO-97).
-4. **Dangerous Cross-Visit Amnesia:** Stateless LLMs and vector stores cannot reliably recall that a patient was prescribed Sildenafil 7 months ago when a doctor prescribes Nitroglycerin today.
-5. **Why Vector RAG Fails in Healthcare:** Vector search retrieves text that *sounds* semantically similar, but semantic proximity is **not a clinical proof**. Claim adjudicators require verifiable, auditable necessity paths, strict tenant isolation, and deterministic explainability.
-
-OmniHealth Graph replaces vector stores entirely with **FalkorDB** as the high-performance graph reasoning engine.
+Rather than treating the graph database as an auxiliary data store or passive visualizer, **FalkorDB actively shapes what every AI agent does**:
+1. **Medical Necessity Proofs:** Proves deterministically through multi-hop Cypher traversals that clinical symptoms justify billing CPT procedures, surfacing literal `nodes(path)` pill trails to eliminate claim denials (CARC CO-50).
+2. **Pre-Claim Unbundling Interception:** Navigates procedure hierarchy edges to block NCCI unbundling penalties (CARC CO-97) before claims leave the hospital.
+3. **Cross-Session Safety & Multi-Tenant Memory:** Retains isolated longitudinal patient subgraphs (`patient_<id>`) to catch lethal drug-drug contraindications prescribed across visits months apart.
+4. **Institutional Hospital Brain:** Mines enterprise claim denial hotspots and supervising physician hierarchies to protect hospital solvency.
 
 ---
 
-## 🔄 End-to-End Clinical & Revenue Optimization Workflow
+## 🏆 How OmniHealth Graph Fulfills All 3 Hackathon Tracks
+
+| Track | Requirement | How FalkorDB Drives the Agent | Cypher Traversal In Action |
+| :--- | :--- | :--- | :--- |
+| **Track 01: Agents That Act on Connected Data** | *"The graph has to shape what the agent does, not sit on the side"* | Medical coding & compliance agents traverse `clinical_rules` to evaluate necessity. If no graph path links Symptom ➔ Diagnosis ➔ Procedure, the code is flagged as unproven and the claim is gated. Unbundling edges intercept bundled components. | `MATCH path = (s:Symptom)-[:INDICATES]->(d:Diagnosis)-[:SUPPORTS_NECESSITY]->(p:Procedure {code: $c})` |
+| **Track 02: Agent Memory & Coordination** | *"Agent memory across sessions with multi-tenant graph isolation"* | Every patient has an isolated subgraph (`patient_<id>`). When new medications are prescribed, the clinical agent traverses past encounters against pharmacovigilance contraindication rules, hard-locking the approval button until acknowledged. | `MATCH (p:Patient)-[:HAS_ACTIVE_MED]->(m) ... MATCH path = (new:Drug)-[:IN_CLASS]->()-[:CONTRAINDICATED_WITH]-()<-[:IN_CLASS]-(active:Drug)` |
+| **Track 03: Company Brain** | *"Institutional knowledge & revenue optimization"* | Models the hospital's operational brain (`hospital_brain`), mapping Departments, Supervising Physicians, frequently billed CPTs, and historical denial reasons (CARC codes) to alert clinicians of denial patterns before submission. | `MATCH path = (d:Department)-[:FREQUENTLY_BILLS]->(c:CPT)-[:DENIED_FOR]->(r:DenialReason)` |
+
+---
+
+## 🩺 The Healthcare Crisis & Why Vector RAG Fails
+
+Modern healthcare providers spend **2+ hours on EHR data entry for every 1 hour of patient care**, while US hospitals lose **$260+ billion annually to claim denials**.
+
+Almost all generative AI clinical assistants use **generic Vector RAG**. In healthcare, **vector similarity is fundamentally flawed**:
+1. **Semantic Closeness ≠ Clinical Proof:** A vector cosine distance of `0.85` cannot prove to a CMS auditor that a 12-lead ECG was legally justified by exertional angina. Payers require deterministic proof paths.
+2. **Vectors Are Structurally Blind to Relationships:** A flat vector index cannot determine if CPT `93010` is an unbundled sub-component of CPT `93000`, leading to massive automated payer clawbacks.
+3. **Amnesia Across Encounters:** Flat vector stores cannot reliably isolate longitudinal patient histories, risking cross-patient hallucination and missing historical prescriptions.
+
+**OmniHealth Graph eliminates vector stores entirely**, using FalkorDB's ultra-low latency Cypher graph traversals to provide deterministic, auditable clinical reasoning.
+
+---
+
+## 🔄 Multi-Agent System Architecture (LangGraph)
+
+Our 8-node LangGraph state machine orchestrates specialized agents with FalkorDB at the core:
 
 ```
-Doctor-Patient Conversation
-          ↓
-   Speech-to-Text
-          ↓
-Conversation Analysis & PII De-identification
-          ↓
-Clinical Information Extraction
-          ↓
-┌─────────────────────────┴─────────────────────────┐
-↓                                                   ↓
-Clinical Documentation Agent             Medical Coding & Compliance Agent
-↓                                                   ↓
-Structured SOAP Notes Generation         ICD-10-CM & CPT Code Recommendations
-↓                                                   ↓
-Cross-Session Contraindication Check     FalkorDB Deterministic Proof Paths (nodes(path))
-↓                                                   ↓
-Documentation Gap Detection              NCCI Bundling & Denial Risk Analysis
-└─────────────────────────┬─────────────────────────┘
-                          ↓
-              Revenue Leakage Insights & Hospital Brain
-                          ↓
-              Human-in-the-Loop Validation
-           (Doctor Acknowledges Alerts & Signs Off)
-                          ↓
-              FalkorDB Encounter Writeback
-            (Encounter Committed to Patient Memory)
-                          ↓
-              EHR / Billing Release
+                      [ Ambient Consultation / Audio File ]
+                                       ↓
+                             [ 1. Voice Ingestion ]
+                                       ↓
+                            [ 2. PII Sanitizer ] (HIPAA Safe Harbor)
+                                       ↓
+                        ┌──────────────────────────────┐
+                        │   3. FalkorDB Retrieval Node │ (symptoms + patient memory)
+                        └──────────────┬───────────────┘
+                                       ↓
+                         [ 4. Clinical SOAP Agent ]
+                                       ↓
+                        ┌──────────────────────────────┐
+                        │   5. Medical Coding Agent    │ ➔ [ FalkorDB Medical Necessity Traversal ]
+                        └──────────────┬───────────────┘
+                                       ↓
+                        ┌──────────────────────────────┐
+                        │   6. Compliance & Audit Node │ ➔ [ FalkorDB NCCI Unbundling Traversal ]
+                        └──────────────┬───────────────┘
+                                       ↓
+                        ┌──────────────────────────────┐
+                        │ 7. Revenue & Hospital Brain  │ ➔ [ FalkorDB Institutional Denial Analytics ]
+                        └──────────────┬───────────────┘
+                                       ↓
+                        ┌──────────────────────────────┐
+                        │    8. Reviewer & Guardrails  │ ➔ [ Cross-Session Contraindication Gate ]
+                        └──────────────┬───────────────┘
+                                       ↓
+                   [ Locked Approval Gate: Doctor Acknowledges ]
+                                       ↓
+                       [ Idempotent FalkorDB Writeback ] ➔ (Updates patient_<id> memory)
 ```
 
 ---
 
-## 🕸️ Visual Graph Data Model
+## 🕸️ Graph Data Model in FalkorDB
 
-The system operates across three interconnected graph families hosted within one FalkorDB instance:
+Hosted across three graph families within FalkorDB:
 
 ```mermaid
 graph TD
@@ -114,43 +128,53 @@ graph TD
     P1 -.->|Resolved in Brain| CPT1
 ```
 
+### Graph Schema Specifications
+
+1. **`clinical_rules` Graph (Track 01):**
+   * **Node Labels:** `(:Symptom {name, aliases})`, `(:Diagnosis {code, description})`, `(:Procedure {code, description})`, `(:Drug {name, aliases})`, `(:DrugClass {name})`.
+   * **Relationship Types:** `[:INDICATES]`, `[:SUPPORTS_NECESSITY]`, `[:INCLUDES]`, `[:IN_CLASS]`, `[:CONTRAINDICATED_WITH {severity, effect}]`.
+2. **`patient_<id>` Subgraphs (Track 02 - Multi-Tenant Isolation):**
+   * **Node Labels:** `(:Patient {id, name})`, `(:Encounter {id, date})`, `(:Condition {name})`, `(:Medication {name})`.
+   * **Relationship Types:** `[:HAD_ENCOUNTER]`, `[:DIAGNOSED]`, `[:PRESCRIBED]`, `[:HAS_ACTIVE_MED]`.
+3. **`hospital_brain` Graph (Track 03):**
+   * **Node Labels:** `(:Department {name})`, `(:Physician {name})`, `(:CPT {code, name})`, `(:DenialReason {code, name})`.
+   * **Relationship Types:** `[:SUPERVISED_BY]`, `[:FREQUENTLY_BILLS {count}]`, `[:DENIED_FOR {count}]`.
+
 ---
 
-## ⚡ Core Cypher Queries & Graph Traversals
+## ⚡ Core Cypher Queries That Drive the Agents
 
-### 1. Medical Necessity Multi-Hop Traversal (Track 01)
-Proves that documented clinical symptoms justify the recommended billing code via a 3-node path, returning the literal `nodes(path)` rendered in the UI as a provenance pill trail:
+### 1. Multi-Hop Medical Necessity Proof (Track 01)
 ```cypher
 MATCH path = (s:Symptom)-[:INDICATES]->(d:Diagnosis)-[:SUPPORTS_NECESSITY]->(p:Procedure {code: $code})
 WHERE s.name IN $symptoms
 RETURN [n IN nodes(path) | coalesce(n.name, n.code)] AS trace_path, d.code AS icd, p.code AS cpt
-ORDER BY d.code
-LIMIT 1
+ORDER BY d.code LIMIT 1
 ```
+* **Output in UI:** `chest tightness ➔ I20.9 ➔ 93000` (rendered as visual provenance pills).
 
-### 2. NCCI-Style Code Unbundling Detection (Track 01)
-Intercepts unbundled component codes (e.g. CPT 93010) billed alongside a comprehensive procedure (CPT 93000) before payer claim submission:
+### 2. NCCI Procedure Unbundling Detection (Track 01)
 ```cypher
 MATCH path = (a:Procedure)-[:INCLUDES]->(b:Procedure)
 WHERE a.code IN $cpt_codes AND b.code IN $cpt_codes
 RETURN a.code AS comprehensive, b.code AS component, [n IN nodes(path) | n.code] AS trace_path
 ```
+* **Output in UI:** Flags CPT `93010` because CPT `93000` already includes it (preventing CARC CO-97 denial).
 
-### 3. Cross-Session Patient Memory & Drug Contraindication Traversal (Track 02)
-Traverses active prescriptions in tenant-isolated subgraph `patient_{patient_id}` against pharmacological class contraindications in `clinical_rules`:
+### 3. Cross-Session Patient Memory & Pharmacovigilance (Track 02)
 ```cypher
-// Step A: Retrieve active patient medications from isolated patient memory
+// Step 1: Query historical active medications from isolated patient subgraph
 MATCH (p:Patient {id: $patient_id})-[:HAS_ACTIVE_MED]->(m:Medication)<-[:PRESCRIBED]-(e:Encounter)
 RETURN m.name AS med_name, e.id AS encounter_id, e.date AS encounter_date
 
-// Step B: Multi-hop drug-class contraindication path query in rules graph
+// Step 2: Multi-hop drug-class contraindication traversal in rules graph
 MATCH path = (new:Drug {name: $new_drug})-[:IN_CLASS]->(:DrugClass)-[r:CONTRAINDICATED_WITH]-(:DrugClass)<-[:IN_CLASS]-(active:Drug)
 WHERE active.name IN $active_med_names
 RETURN active.name, r.severity, r.effect, [n IN nodes(path) | n.name] AS trace_path
 ```
+* **Output in UI:** Red Alert Card intercepting `Nitroglycerin` with active `Sildenafil` (`Fatal refractory hypotension`).
 
-### 4. Patient Encounter Memory Writeback (Track 02)
-Idempotent writeback upon clinician sign-off that updates the longitudinal patient memory:
+### 4. Idempotent Encounter Memory Writeback (Track 02)
 ```cypher
 MERGE (p:Patient {id: $pid}) SET p.name = coalesce($name, p.name)
 MERGE (p)-[:HAD_ENCOUNTER]->(e:Encounter {id: $eid}) SET e.date = $date
@@ -159,123 +183,149 @@ MERGE (m:Medication {name: $medication})
 MERGE (e)-[:PRESCRIBED]->(m)
 MERGE (p)-[:HAS_ACTIVE_MED]->(m)
 ```
+* **Outcome:** Commits the encounter into `patient_<id>` so future encounters immediately inherit this context.
 
-### 5. Institutional Hospital Brain Denial Hotspots Query (Track 03)
-Surfaces department-level historical claim denial patterns (CARC codes) to alert the medical coder and provider at review time:
+### 5. Institutional Hospital Brain Denial Analytics (Track 03)
 ```cypher
 MATCH path = (d:Department {name: $department})-[b:FREQUENTLY_BILLS]->(c:CPT)-[x:DENIED_FOR]->(r:DenialReason)
-RETURN c.code AS cpt_code, c.name AS procedure_name, b.count AS billed_count, 
-       r.code AS denial_code, r.name AS denial_reason, x.count AS denial_count,
-       [n IN nodes(path) | coalesce(n.name, n.code)] AS trace_path
+RETURN c.code, c.name, b.count, r.code, r.name, x.count, [n IN nodes(path) | coalesce(n.name, n.code)] AS trace_path
 ORDER BY x.count DESC
 ```
+* **Output in UI:** Surfaces Cardiology historical denial rates (CO-50 and CO-97) to the reviewer.
 
 ---
 
-## 🛠️ Technology Stack & Architecture
+## 🚀 Quickstart & Local Setup Instructions
 
-- **Graph Database:** [FalkorDB](https://www.falkordb.com/) (Ultra low-latency Redis-based graph engine with full Cypher support).
-- **Backend Framework:** FastAPI (Python 3.10+ / 3.14 compatible), Uvicorn.
-- **Orchestration:** LangGraph multi-agent cyclical workflow.
-- **LLM Engine:** Google Gemini (`gemini-1.5-pro` via `langchain-google-genai`) with built-in zero-dependency offline simulator fallback.
-- **Security & Privacy:** Fernet symmetric PHI encryption, JWT Bearer authentication, PBKDF2 password hashing.
-- **Frontend App:** React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Lucide Icons.
-- **Persistence:** MongoDB with automated in-memory embedded fallback if MongoDB daemon is absent.
-
----
-
-## 🚀 Quickstart: Local Setup & Execution
+The platform uses a **Dual-Engine Architecture**: it connects directly to **FalkorDB Cloud** (active) or local Docker, with an embedded **zero-latency in-memory graph fallback** so the entire platform works out of the box without external dependencies.
 
 ### Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for FalkorDB)
-- Python 3.10+ and Node.js 18+
+* Python 3.10+ (tested on Python 3.10 - 3.14)
+* Node.js 18+
 
-### Step 1: Start FalkorDB Container
-Run the official FalkorDB Docker container exposing both the Redis graph port (6379) and FalkorDB Browser (3000):
+### Step 1: Start Backend Server
 ```bash
-docker run -d --name falkordb -p 6379:6379 -p 3000:3000 falkordb/falkordb:latest || docker start falkordb
-```
-- **FalkorDB Engine:** `localhost:6379`
-- **FalkorDB Browser:** `http://localhost:3000`
+git clone https://github.com/nandini-gangrade/OmniHealth-Graph.git
+cd healthcare_platform/backend
 
----
-
-### Step 2: Configure & Start Backend Server
-```bash
-# 1. Navigate to backend directory
-cd backend
-
-# 2. Generate environment secrets (random JWT & Fernet keys)
-# Usage: python generate_env.py [OPTIONAL_GEMINI_API_KEY]
-python generate_env.py
-
-# 3. Create and activate virtual environment
+# Create virtual environment
 python -m venv .venv
-# On Windows:
-.venv\Scripts\activate
-# On Linux/macOS:
+
+# Activate virtual environment
+# Windows PowerShell:
+.\.venv\Scripts\activate
+# Linux/macOS:
 # source .venv/bin/activate
 
-# 4. Install backend dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 5. Start Uvicorn backend server
-uvicorn app.main:app --port 8000
+# Start backend server (starts on http://localhost:8000)
+uvicorn app.main:app --port 8000 --reload
 ```
-- **Backend API:** `http://localhost:8000`
-- **Swagger Docs:** `http://localhost:8000/docs`
-- **Health Check:** `http://localhost:8000/health` (Reports graph engine, seeded graphs, and database status).
+* **Backend API:** `http://localhost:8000`
+* **Swagger Interactive Docs:** `http://localhost:8000/docs`
+* **Health Check Probe:** `http://localhost:8000/health`
 
----
-
-### Step 3: Start Frontend Dev Server
-In a new terminal window:
+### Step 2: Start Frontend Application
+In a second terminal window:
 ```bash
-cd frontend
+cd healthcare_platform/frontend
 npm install
 npm run dev
 ```
-- **Frontend Application:** `http://localhost:5173`
+* **Open in Browser:** `http://localhost:5173`
 
 ---
 
-## 🧪 Testing the Live Demo Case (Robert Vance)
+## 🔑 Demo Personas & Login Credentials
 
-1. Open **`http://localhost:5173`** and sign in:
-   - **Username:** `doctor@hospital.com`
-   - **Password:** `doctor123`
-2. Go to **Sessions** → Click **New Session**:
-   - **Patient Name:** `Robert Vance`
-   - **DOB:** `1960-05-12`
-   - *(The system automatically binds Robert Vance to tenant graph `patient_P-9801`)*.
-3. On the consultation recording screen, click **Load demo case (Robert Vance)** and click **Optimize & Generate EHR**:
-   ```
+Pre-seeded role-based accounts ready for testing:
+
+| Role | Username / Email | Password | Access Rights |
+| :--- | :--- | :--- | :--- |
+| **Clinician (Doctor)** | `doctor@hospital.com` | `doctor123` | Patient Ingestion, Audio Playback, SOAP Notes, Sign-Off Gate |
+| **Medical Coder** | `coder@hospital.com` | `coder123` | Code Audit, NCCI Unbundling Review, CPT Overrides |
+| **Compliance Auditor**| `auditor@hospital.com` | `auditor123` | CARC Denial Analytics, Provenance Trail Inspections |
+| **Hospital Admin** | `admin@hospital.com` | `admin123` | Full System Audit Logs, Department Compliance Oversight |
+
+---
+
+## 🧪 Live Demo Case Walkthrough (Robert Vance)
+
+To experience the full multi-track workflow in 2 minutes:
+
+1. **Sign in** at `http://localhost:5173` as `doctor@hospital.com` / `doctor123`.
+2. Click **New Session** → Enter Patient Name: `Robert Vance`, DOB: `1960-05-12`, Department: `Cardiology` → Click **Create Session**. *(Automatically binds to FalkorDB tenant graph `patient_P-9801`)*.
+3. Click **Play Consultation Audio** to hear the audio dialogue, then click **Load demo case (Robert Vance)**:
+   ```text
    Doctor: Hello Mr. Vance, what brings you in today?
    Patient: For two weeks my chest feels heavy and tight when I climb stairs. It goes away when I rest.
    Doctor: This sounds like angina. I will order a 12-lead ECG and a blood glucose, and prescribe nitroglycerin 0.4 mg sublingual as needed.
    ```
-4. **Inspect the Clinical Provenance & Flags:**
-   - **Billing Codes Tab:** See the FalkorDB provenance pill trail: `chest tightness ➔ I20.9 ➔ 93000`.
-   - **Unbundling Warning:** Notice CPT `93010` flagged with an amber warning because `93000` already includes `93010`.
-   - **Contraindication Alert:** See the red contraindication alert in the Plan: Active **Sildenafil** from encounter `ENC-01` conflicts with prescribed **Nitroglycerin** (fatal hypotension).
-   - **Hospital Brain Card:** See Cardiology department claim denial insights (CO-50 and CO-97 trends).
-5. **Human-in-the-Loop Sign-Off:**
-   - Notice the **Approve** button is disabled until the doctor acknowledges the drug interaction.
-   - Check the acknowledgement checkbox and click **Approve EHR & Release Codes**.
-   - Open **`http://localhost:3000`** in FalkorDB Browser, select `patient_P-9801`, and run `MATCH (n) RETURN n` to see the new encounter committed to memory.
+4. Click **Optimize & Generate EHR**. Watch the LangGraph state machine orchestrate the agent pipeline.
+5. **Inspect the FalkorDB Clinical Intelligence:**
+   * **Red Contraindication Alert (Track 02):** Active Sildenafil from `ENC-01` conflicts with prescribed Nitroglycerin (`Fatal refractory hypotension`). Shows rose pill trail: `nitroglycerin ➔ Nitrate ➔ PDE5 Inhibitor ➔ sildenafil`.
+   * **Medical Necessity Trace (Track 01):** Under CPT `93000`, see the green pill trail: `chest tightness ➔ I20.9 ➔ 93000`.
+   * **NCCI Unbundling Flag (Track 01):** Amber warning on CPT `93010` (included in `93000`).
+   * **Hospital Brain (Track 03):** Cardiology denial hotspots (CARC CO-50 and CO-97).
+6. **Enforced Human-in-the-Loop Sign-Off:**
+   * Notice the **Approve EHR & Release Codes** button is **locked/disabled**.
+   * Check the safety acknowledgement checkbox: *"I have reviewed the 1 graph-flagged contraindication(s) and take clinical responsibility."*
+   * Click **Approve EHR & Release Codes**. The encounter is committed into FalkorDB `patient_P-9801`.
 
 ---
 
-## 🌐 Production & Cloud Deployment Notes
+## 📁 Repository Directory Structure
 
-- **Frontend (Vercel):** The `frontend/` directory is 100% Vercel-ready with [frontend/vercel.json](file:///c:/Users/Lenovo/Desktop/Healthcare_Platform/healthcare_platform/frontend/vercel.json) for SPA routing. Set environment variable `VITE_API_BASE=https://<your-backend-domain>/api`.
-- **Backend (Render / Railway / Fly.io / Cloud VM):** Set `FALKORDB_HOST`, `FALKORDB_PORT`, `FALKORDB_PASSWORD`, `JWT_SECRET_KEY`, `FERNET_KEY`, and `GEMINI_API_KEY`.
-- **FalkorDB Cloud:** Deploy on FalkorDB Cloud and point `FALKORDB_HOST` and credentials in `backend/.env`.
+```
+healthcare_platform/
+├── README.md                      # Comprehensive hackathon presentation guide
+├── backend/
+│   ├── .env                       # Clean environment variables
+│   ├── generate_env.py            # Automated cryptographic secret generator
+│   ├── requirements.txt           # Backend dependencies (FastAPI, FalkorDB, LangGraph)
+│   └── app/
+│       ├── main.py                # FastAPI app initialization & graph health probe
+│       ├── core/
+│       │   ├── config.py          # Pydantic settings with FalkorDB Cloud & SSL support
+│       │   └── security.py        # Fernet PHI encryption & JWT role verification
+│       ├── services/
+│       │   ├── falkor_service.py  # Load-bearing FalkorDB service (Cloud + 0ms Fallback)
+│       │   └── pii_service.py     # HIPAA Safe Harbor de-identification engine
+│       ├── agents/
+│       │   ├── graph.py           # Compiled LangGraph state machine (8 agent nodes)
+│       │   ├── clinical_agent.py  # Structured SOAP & FHIR Bundle generation
+│       │   ├── coding_agent.py    # FalkorDB necessity traversal engine
+│       │   ├── compliance_agent.py# NCCI bundling & documentation audit
+│       │   ├── revenue_agent.py   # Leakage recovery & CARC denial optimization
+│       │   └── reviewer_agent.py  # Human sign-off & safety gate enforcement
+│       └── routers/
+│           ├── auth.py            # Role-based OAuth2 authentication
+│           ├── sessions.py        # Clinical encounter lifecycle & writeback
+│           └── graph.py           # FalkorDB Cypher endpoints
+└── frontend/
+    ├── package.json               # Frontend dependencies (React, Vite, Lucide)
+    ├── vercel.json                # Vercel SPA deployment configuration
+    ├── public/voices/             # Consultation audio asset (consultation_vance.mp3)
+    └── src/
+        ├── pages/
+        │   ├── LiveRecording.tsx  # Ambient voice ingestion & agent execution
+        │   └── Sessions.tsx       # Encounter manager & status overview
+        ├── components/
+        │   ├── SessionDetails.tsx # SOAP notes, provenance pills, contraindication alerts
+        │   └── AudioRecorder.tsx  # WebSocket audio streaming & speech-to-text
+        └── services/
+            └── api.ts             # REST client for backend agent pipeline
+```
 
 ---
 
-## 🔒 Security, Compliance & Human-in-the-Loop Governance
-- **Zero Hallucination Proof Paths:** CPT and ICD-10 suggestions are strictly anchored to deterministic FalkorDB Cypher paths.
-- **HIPAA Security Rule Architecture:** PHI transcripts are encrypted at rest using Fernet symmetric 256-bit keys before database storage.
-- **Enforced Clinician Oversight:** AI agents never autonomously finalize clinical records. Clinicians retain full editorial control and must explicitly acknowledge contraindications to release claims.
-- **Comprehensive Audit Trail:** Every session creation, agent optimization, and sign-off generates an immutable audit log entry.
+## 🔒 Security, Compliance & Governance
+* **Deterministic Proof Paths:** Billing codes are anchored to Cypher graph traversals—preventing LLM coding hallucinations.
+* **HIPAA Safe Harbor Compliance:** All patient transcripts are scrubbed of PII and encrypted at rest with Fernet 256-bit keys before database storage.
+* **Non-Bypassable Clinical Governance:** AI agents never autonomously release billing claims. Clinicians retain full editorial control and must explicitly acknowledge contraindications to sign off.
+
+---
+
+*Healthcare AI shouldn't guess. With FalkorDB, we can prove it.*

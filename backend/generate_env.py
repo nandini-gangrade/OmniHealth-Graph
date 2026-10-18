@@ -10,7 +10,7 @@ path.write_text(
     f"JWT_SECRET_KEY={secrets.token_urlsafe(48)}\n"
     f"FERNET_KEY={Fernet.generate_key().decode()}\n"
     f"GEMINI_API_KEY={gemini}\n"
-    "FALKORDB_HOST=localhost\nFALKORDB_PORT=6379\n"
+    "FALKORDB_HOST=localhost\nFALKORDB_PORT=6379\nFALKORDB_PASSWORD=\n"
     "MONGODB_URL=mongodb://localhost:27017\nDATABASE_NAME=healthcare_optimization\n"
 )
 print(f"Wrote {path}")

@@ -68,7 +68,8 @@ class ReviewerAgent:
             return data
         except Exception as e:
             logger.error(f"Error in ReviewerAgent: {e}. Utilizing fallback reviewer audit.")
-            response = self.llm.invoke("reviewer hallucination")
+            from app.agents.llm import SimulatedLLM
+            response = SimulatedLLM().invoke("reviewer hallucination")
             return json.loads(response.content)
 
 # Global instance

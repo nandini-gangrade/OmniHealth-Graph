@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     FALKORDB_HOST: str = "localhost"
     FALKORDB_PORT: int = 6379
     FALKORDB_PASSWORD: Optional[str] = None
+    FALKORDB_USERNAME: Optional[str] = None
+    FALKORDB_SSL: bool = False
 
     # Gemini (optional: simulated LLM is used when empty)
     GEMINI_API_KEY: Optional[str] = None

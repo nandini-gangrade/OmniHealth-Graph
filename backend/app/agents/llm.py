@@ -29,21 +29,49 @@ def strip_fences(content: str) -> str:
     return content
 
 
+_cached_llm: Any = None
+
+
 def get_llm():
-    """Gemini (temperature 0.1 for deterministic clinical reasoning) or the offline simulator."""
-    if has_gemini and settings.GEMINI_API_KEY:
-        try:
-            logger.info("Initializing Gemini chat model: %s", settings.GEMINI_MODEL)
-            return ChatGoogleGenerativeAI(
-                model=settings.GEMINI_MODEL,
-                temperature=0.1,
-                google_api_key=settings.GEMINI_API_KEY,
-            )
-        except Exception as e:
-            logger.warning(f"Failed to initialize Gemini ({e}). Using simulated Clinical Engine.")
+    """Gemini (temperature 0.1 for deterministic clinical reasoning) or the offline simulator.
+    
+    Probes on initialization with a short timeout so that an invalid key or model 404
+    instantly falls back to the simulated engine with 0ms latency rather than stalling
+    each pipeline node with retry timeouts.
+    """
+    global _cached_llm
+    if _cached_llm is not None:
+        return _cached_llm
+
+    api_key = (settings.GEMINI_API_KEY or "").strip()
+    if has_gemini and api_key:
+        models_to_try = [settings.GEMINI_MODEL]
+        if "gemini-1.5-flash" not in models_to_try:
+            models_to_try.append("gemini-1.5-flash")
+
+        for model_name in models_to_try:
+            try:
+                logger.info("Probing Gemini chat model: %s", model_name)
+                candidate = ChatGoogleGenerativeAI(
+                    model=model_name,
+                    temperature=0.1,
+                    google_api_key=api_key,
+                    max_retries=1,
+                    timeout=5.0,
+                )
+                candidate.invoke("ping")
+                logger.info("Gemini chat model %s verified and active.", model_name)
+                _cached_llm = candidate
+                return _cached_llm
+            except Exception as e:
+                logger.warning("Gemini probe for %s failed (%s).", model_name, e)
+
+        logger.warning("All Gemini probes failed. Engaging zero-latency simulated Clinical Engine.")
     else:
-        logger.info("GEMINI_API_KEY not set (or langchain-google-genai missing). Using simulated Clinical LLM Engine.")
-    return SimulatedLLM()
+        logger.info("GEMINI_API_KEY not set. Using simulated Clinical LLM Engine.")
+
+    _cached_llm = SimulatedLLM()
+    return _cached_llm
 
 
 class SimulatedLLM:

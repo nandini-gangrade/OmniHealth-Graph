@@ -53,7 +53,8 @@ class RevenueAgent:
             return data
         except Exception as e:
             logger.error(f"Error in RevenueAgent: {e}. Utilizing fallback revenue report.")
-            response = self.llm.invoke("revenue leakage")
+            from app.agents.llm import SimulatedLLM
+            response = SimulatedLLM().invoke("revenue leakage")
             return json.loads(response.content)
 
 # Global instance
