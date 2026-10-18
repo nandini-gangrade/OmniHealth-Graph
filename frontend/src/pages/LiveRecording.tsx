@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AudioRecorder } from "../components/AudioRecorder";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "../components/ui/shadcn";
 import { api } from "../services/api";
-import { Sparkles, BrainCircuit, CheckSquare, Loader2, ArrowRight } from "lucide-react";
+import { Sparkles, BrainCircuit, CheckSquare, Loader2, ArrowRight, Volume2 } from "lucide-react";
 
 // Demo case for the OmniHealth Graph hackathon (patient "Robert Vance" -> graph P-9801)
 const DEMO_TRANSCRIPT = `Doctor: Hello Mr. Vance, what brings you in today?
@@ -16,6 +16,32 @@ export const LiveRecording: React.FC = () => {
   const [transcript, setTranscript] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeStep, setActiveStep] = useState<number>(-1);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [audioRef] = useState<HTMLAudioElement | null>(() => typeof Audio !== "undefined" ? new Audio("/voices/consultation_vance.mp3") : null);
+
+  useEffect(() => {
+    if (!audioRef) return;
+    const onEnded = () => setIsPlayingAudio(false);
+    audioRef.addEventListener("ended", onEnded);
+    return () => {
+      audioRef.removeEventListener("ended", onEnded);
+      audioRef.pause();
+    };
+  }, [audioRef]);
+
+  const toggleAudio = () => {
+    if (!audioRef) return;
+    if (isPlayingAudio) {
+      audioRef.pause();
+      setIsPlayingAudio(false);
+    } else {
+      audioRef.currentTime = 0;
+      audioRef.play().then(() => setIsPlayingAudio(true)).catch((err) => {
+        console.error("Audio playback error:", err);
+        setIsPlayingAudio(false);
+      });
+    }
+  };
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -151,11 +177,27 @@ export const LiveRecording: React.FC = () => {
           {selectedId && (
             <Card>
               <CardHeader>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-wrap justify-between items-center gap-2">
                   <CardTitle>Transcript (editable)</CardTitle>
-                  <Button variant="secondary" size="sm" onClick={() => setTranscript(DEMO_TRANSCRIPT)} disabled={isProcessing}>
-                    Load demo case (Robert Vance)
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={toggleAudio}
+                      disabled={isProcessing}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition-colors ${
+                        isPlayingAudio 
+                          ? "bg-cyan-950/80 text-cyan-300 border-cyan-500/50 shadow-cyan-glow animate-pulse" 
+                          : "bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700"
+                      }`}
+                      title="Play simulated ElevenLabs doctor-patient consultation audio"
+                    >
+                      <Volume2 size={13} className={isPlayingAudio ? "text-cyan-400" : "text-slate-400"} />
+                      <span>{isPlayingAudio ? "Pause Audio" : "Play Consultation Audio"}</span>
+                    </button>
+                    <Button variant="secondary" size="sm" onClick={() => setTranscript(DEMO_TRANSCRIPT)} disabled={isProcessing}>
+                      Load demo case (Robert Vance)
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
               <CardContent>
