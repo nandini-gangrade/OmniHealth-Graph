@@ -57,10 +57,10 @@ export const Login: React.FC = () => {
             <HeartPulse size={32} />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent font-outfit">
-            Aegis Healthcare
+            OmniHealth Graph
           </h1>
           <p className="text-sm text-slate-400">
-            EHR Documentation & Revenue Optimization Platform
+            Intelligent Clinical Documentation & Revenue Optimization Assistant
           </p>
         </div>
 

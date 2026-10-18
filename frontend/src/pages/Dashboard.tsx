@@ -54,7 +54,7 @@ export const Dashboard: React.FC = () => {
       <div className="flex justify-between items-center bg-gradient-to-r from-slate-950/60 to-cyan-950/10 p-6 rounded-xl border border-slate-800">
         <div>
           <h2 className="text-2xl font-bold font-outfit text-slate-100 flex items-center space-x-2">
-            <span>Welcome to Aegis Hub</span>
+            <span>Welcome to OmniHealth Graph</span>
             <Sparkles size={20} className="text-cyan-400" />
           </h2>
           <p className="text-sm text-slate-400 mt-1">

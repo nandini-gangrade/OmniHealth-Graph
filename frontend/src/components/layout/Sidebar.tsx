@@ -44,10 +44,10 @@ export const Sidebar: React.FC = () => {
           </div>
           <div>
             <h1 className="text-md font-bold bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent font-outfit leading-tight">
-              Aegis Clinical
+              OmniHealth Graph
             </h1>
             <p className="text-[10px] text-cyan-400 uppercase tracking-widest font-semibold">
-              Rev Optimization
+              EHR & Rev Optimization
             </p>
           </div>
         </div>
