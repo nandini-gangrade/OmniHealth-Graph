@@ -16,6 +16,19 @@
 
 ---
 
+### 🚀 Quick Links & Live Demos
+
+> [!TIP]
+> 📖 **Highly Recommended:** For the full deep-dive into the project, **[read the comprehensive writeup on Dev.to](https://dev.to/nandini-gangrade/how-i-built-omnihealth-graph-with-falkordb-and-langgraph-348d)**.
+
+| Resource | Link |
+| :--- | :--- |
+| 📖 **Technical Blog & Architecture Deep-Dive** | [Read on Dev.to](https://dev.to/nandini-gangrade/how-i-built-omnihealth-graph-with-falkordb-and-langgraph-348d) |
+| 🌐 **Live Web Application** | [omni-health-graph.vercel.app](https://omni-health-graph.vercel.app/) |
+| 🎥 **Demo Video & Walkthrough** | [Watch on Google Drive](https://drive.google.com/drive/folders/18Wp5VSG4S5un9L76dylPrVlh-XsdLKCn) |
+
+---
+
 ## 📌 Executive Summary
 
 **OmniHealth Graph** is an enterprise-grade **Intelligent Clinical Documentation & Revenue Optimization Assistant** where **FalkorDB serves as the load-bearing context, reasoning, memory, and governance layer** alongside LangGraph-orchestrated specialized agents. 
