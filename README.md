@@ -1,5 +1,5 @@
 # OmniHealth Graph
-### Autonomous Clinical Documentation & Revenue Integrity Engine Powered by FalkorDB
+### Intelligent Clinical Documentation & Revenue Optimization Assistant Powered by FalkorDB
 
 [![FalkorDB](https://img.shields.io/badge/Graph_Engine-FalkorDB-E23636.svg)](https://www.falkordb.com/)
 [![Track 1](https://img.shields.io/badge/Track_01-Agents_on_Connected_Data-3B82F6.svg)](#-track-01-agents-that-act-on-connected-data)
@@ -11,14 +11,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Submission for Graph Hacks: Context for AI Agents Powered by FalkorDB**  
+> **Challenge:** *Intelligent Clinical Documentation & Revenue Optimization Assistant*  
 > *Targeting all three tracks: Track 01 (Connected Data), Track 02 (Agent Memory & Coordination), and Track 03 (Company Brain).*
 
 ---
 
-
 ## 📌 Executive Summary
 
-**OmniHealth Graph** is an enterprise-grade clinical documentation and revenue cycle intelligence assistant where **FalkorDB serves as the load-bearing context, reasoning, memory, and governance layer**. 
+**OmniHealth Graph** is an enterprise-grade **Intelligent Clinical Documentation & Revenue Optimization Assistant** where **FalkorDB serves as the load-bearing context, reasoning, memory, and governance layer** alongside LangGraph-orchestrated specialized agents. 
 
 Rather than treating the graph database as an auxiliary data store or passive visualizer, **FalkorDB actively shapes what every AI agent does**:
 1. **Medical Necessity Proofs:** Proves deterministically through multi-hop Cypher traversals that clinical symptoms justify billing CPT procedures, surfacing literal `nodes(path)` pill trails to eliminate claim denials (CARC CO-50).
@@ -38,16 +38,55 @@ Rather than treating the graph database as an auxiliary data store or passive vi
 
 ---
 
-## 🩺 The Healthcare Crisis & Why Vector RAG Fails
+## 🎯 Problem Statement & Solution Overview
 
-Modern healthcare providers spend **2+ hours on EHR data entry for every 1 hour of patient care**, while US hospitals lose **$260+ billion annually to claim denials**.
+### 📋 The Challenge: Intelligent Clinical Documentation & Revenue Optimization Assistant
 
-Almost all generative AI clinical assistants use **generic Vector RAG**. In healthcare, **vector similarity is fundamentally flawed**:
-1. **Semantic Closeness ≠ Clinical Proof:** A vector cosine distance of `0.85` cannot prove to a CMS auditor that a 12-lead ECG was legally justified by exertional angina. Payers require deterministic proof paths.
-2. **Vectors Are Structurally Blind to Relationships:** A flat vector index cannot determine if CPT `93010` is an unbundled sub-component of CPT `93000`, leading to massive automated payer clawbacks.
-3. **Amnesia Across Encounters:** Flat vector stores cannot reliably isolate longitudinal patient histories, risking cross-patient hallucination and missing historical prescriptions.
+> **Description:**  
+> Healthcare providers face an unsustainable administrative burden, spending **over 2 hours on EHR data entry and documentation for every 1 hour of direct patient care**, leading to severe clinician burnout. At the same time, healthcare organizations lose **$260+ billion annually** to claim denials, downcoding, and revenue leakage caused by missing documentation, improper medical coding, unbundled procedures, and uncaptured clinical services.  
+>  
+> Clinical consultations are inherently unstructured, fast-paced dialogues. Manually translating these conversations into compliant clinical notes, discharge summaries, and billing-ready documentation is error-prone, slow, and labor-intensive. Furthermore, navigating complex billing rules, National Correct Coding Initiative (NCCI) bundling edits, and payer medical necessity guidelines creates significant friction between clinical care and revenue cycle management.
 
-**OmniHealth Graph eliminates vector stores entirely**, using FalkorDB's ultra-low latency Cypher graph traversals to provide deterministic, auditable clinical reasoning.
+### ⚠️ Why Conventional Generative AI & Flat Vector Search Fall Short
+Many modern clinical tools attempt to address this crisis using generic Large Language Models paired with flat **Vector RAG**. However, vector similarity is fundamentally insufficient for healthcare compliance and billing:
+1. **Semantic Closeness ≠ Clinical Proof:** A vector cosine similarity score of `0.85` cannot prove to a CMS auditor or insurance payer that an ECG or lab test was legally justified by exertional angina. Payers demand deterministic, explainable necessity links.
+2. **Blind to Relational Hierarchies & Unbundling:** A flat vector index cannot determine if CPT `93010` (ECG interpretation) is an unbundled sub-component of CPT `93000` (complete 12-lead ECG), triggering automated CARC CO-97 denial penalties and clawbacks.
+3. **Amnesia Across Patient Encounters:** Flat vector stores cannot reliably isolate multi-tenant longitudinal patient histories, risking cross-patient hallucinations and missing lethal contraindications from medications prescribed months earlier.
+
+---
+
+### 💡 The Solution: OmniHealth Graph
+
+**OmniHealth Graph** is an AI-powered healthcare documentation and revenue optimization assistant that listens to doctor-patient conversations, automatically generates structured clinical documentation, recommends appropriate medical codes, and identifies potential revenue leakage opportunities.
+
+By leveraging **Generative AI, Speech-to-Text, Natural Language Processing, and Medical Large Language Models (LLMs)** alongside **FalkorDB's Graph Engine**, the system converts unstructured clinical conversations into compliant clinical notes, discharge summaries, and billing-ready documentation. The solution provides intelligent coding recommendations, highlights documentation gaps, and supports healthcare professionals in delivering better patient care while reducing clinician burnout:
+
+* 🎙️ **Ambient Consultation Ingestion:** Listens to ambient doctor-patient consultations, applies HIPAA Safe Harbor de-identification, and generates compliant **SOAP notes**, **visit summaries**, **discharge summaries**, and **EHR-ready records**.
+* 🏷️ **Intelligent Coding & Medical Necessity Proofs:** Automatically extracts clinical entities and recommends appropriate **ICD-10** diagnosis and **CPT** procedure codes. Uses FalkorDB graph traversals (`Symptom ➔ Diagnosis ➔ Procedure`) to produce deterministic medical necessity proof trails that eliminate CARC CO-50 claim denials.
+* 💰 **Pre-Claim Revenue Leakage & Compliance Optimization:** Identifies documentation gaps that impact reimbursement, highlights unbilled high-value clinical services, and blocks NCCI unbundling penalties (CARC CO-97) before claims leave the hospital.
+* 🛡️ **Longitudinal Multi-Tenant Patient Memory:** Isolates patient subgraphs (`patient_<id>`) to remember active medications and past diagnoses across sessions, hard-locking clinician approval if lethal drug contraindications are detected.
+* 🏥 **Institutional Hospital Brain:** Models department denial patterns, billing frequencies, and supervising physician hierarchies to guide revenue cycle teams on denial prevention.
+* 🖥️ **Intuitive Clinician & Revenue Cycle Dashboard:** Provides an interactive dashboard enabling clinicians, medical coders, compliance auditors, and revenue cycle teams to review AI-generated notes, validate coding recommendations, inspect visual graph provenance pills, monitor documentation quality metrics, and track revenue recovery.
+
+---
+
+### 🛡️ Data Considerations & Responsible AI
+
+* **Synthetic & Anonymized Healthcare Datasets:** The solution utilizes synthetic and anonymized healthcare datasets, including clinical consultation transcripts, medical notes, electronic health record (EHR) samples, coding guidelines, billing records, reimbursement policies, and medical terminology libraries.
+* **Privacy-Safe & Zero Real Patient Information:** All datasets are strictly privacy-safe, free from real patient information, and engineered to demonstrate secure handling of sensitive healthcare data while maintaining compliance with healthcare regulations (HIPAA Safe Harbor de-identification, 256-bit Fernet encryption at rest).
+* **Responsible & Trustworthy AI Principles:** Combines creative graph-native approaches with strict clinical governance. AI agents never autonomously release claims without human review; clinicians retain full editorial authority and must explicitly acknowledge safety alerts.
+
+---
+
+### 🚀 Expected Outcomes & Value Delivered
+
+The solution automatically transcribes and analyzes doctor-patient consultations to generate structured clinical documentation such as SOAP notes, visit summaries, discharge summaries, and EHR-ready records. It recommends appropriate ICD and CPT codes, identifies missing documentation that may impact reimbursement, and highlights potential revenue leakage opportunities:
+
+* **Reduced Manual Documentation Effort:** Drastically lowers administrative burden and clinician burnout by turning voice conversations into finished notes in seconds.
+* **Improved Coding Accuracy:** Anchors billing codes to verifiable clinical symptoms and medical necessity paths, eliminating coding hallucinations.
+* **Faster Claim Preparation:** Accelerates billing workflows by delivering audit-ready, pre-validated claim packages with zero manual cross-referencing.
+* **Enhanced Compliance & Denial Prevention:** Eliminates costly NCCI unbundling penalties (CO-97) and medical necessity denials (CO-50) before submission.
+* **Streamlined Multi-Disciplinary Workflows:** Empowers doctors, coders, compliance auditors, and administrators with intuitive role-based dashboards to monitor documentation quality metrics and track revenue optimization opportunities.
 
 ---
 
@@ -55,90 +94,160 @@ Almost all generative AI clinical assistants use **generic Vector RAG**. In heal
 
 Our 8-node LangGraph state machine orchestrates specialized agents with FalkorDB at the core:
 
-```
-                      [ Ambient Consultation / Audio File ]
-                                       ↓
-                             [ 1. Voice Ingestion ]
-                                       ↓
-                            [ 2. PII Sanitizer ] (HIPAA Safe Harbor)
-                                       ↓
-                        ┌──────────────────────────────┐
-                        │   3. FalkorDB Retrieval Node │ (symptoms + patient memory)
-                        └──────────────┬───────────────┘
-                                       ↓
-                         [ 4. Clinical SOAP Agent ]
-                                       ↓
-                        ┌──────────────────────────────┐
-                        │   5. Medical Coding Agent    │ ➔ [ FalkorDB Medical Necessity Traversal ]
-                        └──────────────┬───────────────┘
-                                       ↓
-                        ┌──────────────────────────────┐
-                        │   6. Compliance & Audit Node │ ➔ [ FalkorDB NCCI Unbundling Traversal ]
-                        └──────────────┬───────────────┘
-                                       ↓
-                        ┌──────────────────────────────┐
-                        │ 7. Revenue & Hospital Brain  │ ➔ [ FalkorDB Institutional Denial Analytics ]
-                        └──────────────┬───────────────┘
-                                       ↓
-                        ┌──────────────────────────────┐
-                        │    8. Reviewer & Guardrails  │ ➔ [ Cross-Session Contraindication Gate ]
-                        └──────────────┬───────────────┘
-                                       ↓
-                   [ Locked Approval Gate: Doctor Acknowledges ]
-                                       ↓
-                       [ Idempotent FalkorDB Writeback ] ➔ (Updates patient_<id> memory)
+```text
+          [ Ambient Consultation / Audio File ]
+                          |
+                          v
+                 [ 1. Voice Ingestion ]
+                          |
+                          v
+                  [ 2. PII Sanitizer ]
+                   (HIPAA Safe Harbor)
+                          |
+                          v
+             +------------------------------+
+             | 3. FalkorDB Retrieval Node   |
+             | (symptoms + patient memory)  |
+             +--------------+---------------+
+                            |
+                            v
+                 [ 4. Clinical SOAP Agent ]
+                            |
+                            v
+             +------------------------------+
+             | 5. Medical Coding Agent      |
+             +--------------+---------------+
+                            |
+                            v
+             [ FalkorDB Medical Necessity Traversal ]
+                            |
+                            v
+             +------------------------------+
+             | 6. Compliance & Audit Node   |
+             +--------------+---------------+
+                            |
+                            v
+                [ FalkorDB NCCI Unbundling Traversal ]
+                            |
+                            v
+             +------------------------------+
+             | 7. Revenue & Hospital Brain  |
+             +--------------+---------------+
+                            |
+                            v
+             [ FalkorDB Institutional Denial Analytics ]
+                            |
+                            v
+             +------------------------------+
+             | 8. Reviewer & Guardrails     |
+             +--------------+---------------+
+                            |
+                            v
+             [ Cross-Session Contraindication Gate ]
+                            |
+                            v
+              [ Locked Approval Gate:
+                Doctor Acknowledges ]
+                            |
+                            v
+              [ Idempotent FalkorDB Writeback ]
+                            |
+                            v
+                 (Updates patient_<id> memory)
 ```
 
 ---
-
 ## 🕸️ Graph Data Model in FalkorDB
 
 Hosted across three graph families within FalkorDB:
 
-```mermaid
-graph TD
-    subgraph Track_01 ["Track 01: Clinical Rules Engine (clinical_rules)"]
-        S[Symptom: chest tightness] -->|:INDICATES| D[Diagnosis: I20.9 Angina]
-        D -->|:SUPPORTS_NECESSITY| P1[Procedure: 93000 12-Lead ECG]
-        P1 -->|:INCLUDES| P2[Procedure: 93010 ECG Interp]
-        MedA[Drug: nitroglycerin] -->|:IN_CLASS| DC1[DrugClass: Nitrate]
-        MedB[Drug: sildenafil] -->|:IN_CLASS| DC2[DrugClass: PDE5 Inhibitor]
-        DC1 -.->|:CONTRAINDICATED_WITH<br/>Fatal Refractory Hypotension| DC2
-    end
+```text
+TRACK 01: Clinical Rules Engine (clinical_rules)
 
-    subgraph Track_02 ["Track 02: Multi-Tenant Patient Memory (patient_P-9801)"]
-        Pt[Patient: Robert Vance P-9801] -->|:HAD_ENCOUNTER| E1[Encounter: ENC-01<br/>Date: 2026-03-14]
-        Pt -->|:HAD_ENCOUNTER| E2[Encounter: ENC-02<br/>Date: Today]
-        E1 -->|:PRESCRIBED| M1[Medication: Sildenafil 50mg]
-        Pt -->|:HAS_ACTIVE_MED| M1
-        E2 -->|:PRESCRIBED| M2[Medication: Nitroglycerin 0.4mg]
-        E2 -->|:DIAGNOSED| C1[Condition: Angina pectoris]
-    end
+[Symptom: chest tightness]
+          |
+          | INDICATES
+          v
+[Diagnosis: I20.9 Angina]
+          |
+          | SUPPORTS_NECESSITY
+          v
+[Procedure: 93000 12-Lead ECG]
+          |
+          | INCLUDES
+          v
+[Procedure: 93010 ECG Interp]
 
-    subgraph Track_03 ["Track 03: Institutional Hospital Brain (hospital_brain)"]
-        Dept[Department: Cardiology] -->|:SUPERVISED_BY| Phys[Physician: Dr. Meera Iyer]
-        Dept -->|:FREQUENTLY_BILLS| CPT1[CPT: 93000]
-        CPT1 -->|:DENIED_FOR| DR1[DenialReason: CO-50 Medical Necessity]
-        CPT1 -->|:DENIED_FOR| DR2[DenialReason: CO-97 Unbundling]
-    end
 
-    %% Cross-Graph Traversal Intersections
-    M1 -.->|Resolved in Rules| MedB
-    M2 -.->|Resolved in Rules| MedA
-    P1 -.->|Resolved in Brain| CPT1
+[Drug: nitroglycerin] --IN_CLASS--> [DrugClass: Nitrate]
+                                             |
+                                             | CONTRAINDICATED_WITH
+                                             | Fatal Refractory Hypotension
+                                             |
+                                             v
+[Drug: sildenafil] ----IN_CLASS----> [DrugClass: PDE5 Inhibitor]
+
+
+TRACK 02: Multi-Tenant Patient Memory (patient_P-9801)
+
+[Patient: Robert Vance P-9801]
+          |
+          +---- HAD_ENCOUNTER ----> [Encounter: ENC-01]
+          |                         Date: 2026-03-14
+          |
+          +---- HAD_ENCOUNTER ----> [Encounter: ENC-02]
+                                    Date: Today
+
+[Encounter: ENC-01] ---- PRESCRIBED ----> [Medication: Sildenafil 50mg]
+                                                  ^
+                                                  |
+[Patient: Robert Vance P-9801] -- HAS_ACTIVE_MED -+
+
+[Encounter: ENC-02] ---- PRESCRIBED ----> [Medication: Nitroglycerin 0.4mg]
+
+[Encounter: ENC-02] ---- DIAGNOSED -----> [Condition: Angina pectoris]
+
+
+TRACK 03: Institutional Hospital Brain (hospital_brain)
+
+[Department: Cardiology]
+          |
+          +---- SUPERVISED_BY ----> [Physician: Dr. Meera Iyer]
+          |
+          +---- FREQUENTLY_BILLS --> [CPT: 93000]
+                                            |
+                                            +---- DENIED_FOR ----> [DenialReason: CO-50 Medical Necessity]
+                                            |
+                                            +---- DENIED_FOR ----> [DenialReason: CO-97 Unbundling]
+
+
+CROSS-GRAPH TRAVERSAL INTERSECTIONS
+
+[Medication: Sildenafil 50mg]
+          - - - Resolved in Rules - - -> [Drug: sildenafil]
+
+[Medication: Nitroglycerin 0.4mg]
+          - - - Resolved in Rules - - -> [Drug: nitroglycerin]
+
+[Procedure: 93000 12-Lead ECG]
+          - - - Resolved in Brain - - -> [CPT: 93000]
 ```
 
 ### Graph Schema Specifications
 
+[Google Drive — Graph Schema Specifications](https://drive.google.com/file/d/1WSfj9CppZfFpID9ZBmPxuRA9_68aHYc_/view?usp=sharing)
+
 1. **`clinical_rules` Graph (Track 01):**
-   * **Node Labels:** `(:Symptom {name, aliases})`, `(:Diagnosis {code, description})`, `(:Procedure {code, description})`, `(:Drug {name, aliases})`, `(:DrugClass {name})`.
-   * **Relationship Types:** `[:INDICATES]`, `[:SUPPORTS_NECESSITY]`, `[:INCLUDES]`, `[:IN_CLASS]`, `[:CONTRAINDICATED_WITH {severity, effect}]`.
+   - **Node Labels:** `(:Symptom {name, aliases})`, `(:Diagnosis {code, description})`, `(:Procedure {code, description})`, `(:Drug {name, aliases})`, `(:DrugClass {name})`.
+   - **Relationship Types:** `[:INDICATES]`, `[:SUPPORTS_NECESSITY]`, `[:INCLUDES]`, `[:IN_CLASS]`, `[:CONTRAINDICATED_WITH {severity, effect}]`.
+
 2. **`patient_<id>` Subgraphs (Track 02 - Multi-Tenant Isolation):**
-   * **Node Labels:** `(:Patient {id, name})`, `(:Encounter {id, date})`, `(:Condition {name})`, `(:Medication {name})`.
-   * **Relationship Types:** `[:HAD_ENCOUNTER]`, `[:DIAGNOSED]`, `[:PRESCRIBED]`, `[:HAS_ACTIVE_MED]`.
+   - **Node Labels:** `(:Patient {id, name})`, `(:Encounter {id, date})`, `(:Condition {name})`, `(:Medication {name})`.
+   - **Relationship Types:** `[:HAD_ENCOUNTER]`, `[:DIAGNOSED]`, `[:PRESCRIBED]`, `[:HAS_ACTIVE_MED]`.
+
 3. **`hospital_brain` Graph (Track 03):**
-   * **Node Labels:** `(:Department {name})`, `(:Physician {name})`, `(:CPT {code, name})`, `(:DenialReason {code, name})`.
-   * **Relationship Types:** `[:SUPERVISED_BY]`, `[:FREQUENTLY_BILLS {count}]`, `[:DENIED_FOR {count}]`.
+   - **Node Labels:** `(:Department {name})`, `(:Physician {name})`, `(:CPT {code, name})`, `(:DenialReason {code, name})`.
+   - **Relationship Types:** `[:SUPERVISED_BY]`, `[:FREQUENTLY_BILLS {count}]`, `[:DENIED_FOR {count}]`.
 
 ---
 
